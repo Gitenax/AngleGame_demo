@@ -7,11 +7,14 @@ public struct Point
     {
         X = newX;
         Y = newY;
+        Node = false;
     }
 
     public int X { get; set; }
     
     public int Y { get; set; }
+
+    public bool Node { get; set; }
     
     public static Point Zero => new Point(0, 0);
 

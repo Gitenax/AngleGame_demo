@@ -25,25 +25,15 @@ public class FadedPanel : MonoBehaviour, IPointerClickHandler
     public SelectableTile[] Tiles => _tiles.ToArray();
     
 
-    public void PutSelectableTilesOnBoard(Point currentFigurePosition)
+    public void PutSelectableTilesOnBoard(Point[] positions, Point currentFigurePosition)
     {
         _currentFigurePosition = currentFigurePosition;
         _exceptPositions.Add(currentFigurePosition);
-        
-        CheckVerticalAndHorizontalSpace(currentFigurePosition);
-        // CheckDiagonalSpace(currentFigurePosition);
+
+        foreach (var position in positions)
+            InstantiateTile(position);
     }
 
-   public void RemoveSelectableTilesFromBoard()
-    {
-        foreach (var tile in _tiles)
-        {
-            tile.TileSelected -= OnSelectableTileSelected;
-            Destroy(tile.gameObject);
-        }
-        _tiles.Clear();
-    }
-    
     public void OnPointerClick(PointerEventData eventData)
     {
         if(_possibleMultiJump)
@@ -58,92 +48,34 @@ public class FadedPanel : MonoBehaviour, IPointerClickHandler
         _tiles = new List<SelectableTile>();
         _exceptPositions = new List<Point>();
     }
-
+    
     private void OnDisable()
     {
         RemoveSelectableTilesFromBoard();
         _exceptPositions.Clear();
     }
-
+    
     private void RePutSelectableTilesOnBoard(Point[] availablePositions)
     {
         foreach (Point point in availablePositions)
-            SetTileAfterFigure(point);
-    }
-
-    private void CheckVerticalAndHorizontalSpace(Point currentFigurePosition)
-    {
-        foreach (Point direction in Point.Directions)
-        {
-            var nextToPosition = currentFigurePosition + direction;
-            CheckAndInstantiateTiles(nextToPosition, direction);
-        }
-    }
-
-    private void CheckDiagonalSpace(Point currentFigurePosition)
-    {
-        foreach (Point diagonal in Point.Diagonals)
-        {
-            var nextToPosition = currentFigurePosition + diagonal;
-            CheckAndInstantiateTiles(nextToPosition, diagonal);
-        }
-    }
-
-    private void CheckAndInstantiateTiles(Point position, Point direction)
-    {
-        if (SetTileBeforeFigure(position)) return;
-        
-        SetTileAfterFigure(position + direction);
-    }
-
-
-    /// <returns>true - если плитка установлена после выбранной фишки</returns>
-    private bool SetTileBeforeFigure(Point position)
-    {
-        if (CheckingPointWithin(position) && VerifyNextTileForEmpty(position))
-        {
-            _possibleMultiJump = false;
-            InstantiateTile(position);
-            return true;
-        }
-        return false;
-    }
-
-    /// <returns>true - если плитка установлена через другую фишку</returns>
-    private bool SetTileAfterFigure(Point position)
-    {
-        if (CheckingPointWithin(position) && VerifyNextTileForEmpty(position))
-        {
-            _possibleMultiJump = true;
-            InstantiateTile(position);
-            return true;
-        }
-        return false;
+            InstantiateTile(point);
     }
     
+    private void RemoveSelectableTilesFromBoard()
+    {
+        foreach (var tile in _tiles)
+        {
+            tile.TileSelected -= OnSelectableTileSelected;
+            Destroy(tile.gameObject);
+        }
+        _tiles.Clear();
+    }
     
-    /// <summary>
-    /// Проверка, что данная точка вписывается в размеры "игровой доски"
-    /// </summary>
-    private bool CheckingPointWithin(Point point)
-    {
-        return ((point.X >= 0 && point.X < _gameBoard.Width) 
-                && (point.Y >= 0 && point.Y < _gameBoard.Height));
-    }
-
-    private bool VerifyNextTileForEmpty(Point tilePosition)
-    {
-        if (_gameBoard.Figures[tilePosition] == null)
-            return true;
-
-        return false;
-    }
-
     private void InstantiateTile(Point tilePosition)
     {
         var tile = Instantiate(_selectableTilePrefab, transform);
         tile.InitializeFields(tilePosition);
-        tile.IsMultijumpRoot = _possibleMultiJump;
+        tile.IsMultijumpRoot = tilePosition.Node;
         tile.TileSelected += OnSelectableTileSelected;
         _tiles.Add(tile);
     }
@@ -152,8 +84,6 @@ public class FadedPanel : MonoBehaviour, IPointerClickHandler
     {
         if (selectedTile.IsMultijumpRoot)
         {
-            _exceptPositions.Add(selectedTile.PointPosition);
-            
             // Смещение одной из фишек
             OneOfNewPositionsSelected?.Invoke(selectedTile.PointPosition);
             RemoveSelectableTilesFromBoard();
@@ -174,27 +104,12 @@ public class FadedPanel : MonoBehaviour, IPointerClickHandler
     private bool CheckingPossibleMoves(Point position, out Point[] available)
     {
         var availableTilePos = new HashSet<Point>();
-
-        foreach (Point direction in Point.Directions)
-        {
-            var nextToPosition = position + direction;
-
-            // Если в текущем направлении пустая клетка, то пропускаем ее
-            if (CheckingPointWithin(nextToPosition) && VerifyNextTileForEmpty(nextToPosition))
-                continue;
-            
-            // Если ячейка в следующем направлении не пуста(т.е. есть фишка)
-            if (CheckingPointWithin(nextToPosition) && VerifyNextTileForEmpty(nextToPosition) == false)
-            {
-                nextToPosition += direction;
-                
-                // Если за фишкой место не занято
-                if (CheckingPointWithin(nextToPosition) && VerifyNextTileForEmpty(nextToPosition))
-                {
-                    availableTilePos.Add(nextToPosition);
-                }
-            }
-        }
+        var allPositions =  _gameBoard.MovingRule.GetJumpPoints(position);
+        _exceptPositions.Add(position);
+        
+        foreach (var point in allPositions)
+            availableTilePos.Add(point);
+        
         // Удалить предыдущую позицию(т.е. убрать ход назад)
         availableTilePos.ExceptWith(_exceptPositions);
         available = new Point[availableTilePos.Count];

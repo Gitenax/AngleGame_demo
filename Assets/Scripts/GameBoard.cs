@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Data;
+using MovingRules;
 
 public partial class GameBoard : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public partial class GameBoard : MonoBehaviour
     [SerializeField] private Figure           _figurePrefab;
                      private FadedPanel       _fadedPanel;
                      private Figure           _selectedFigure;
+                     private MovingRule       _rule;
     [SerializeField] private FigureCollection _figureCollection;
     #pragma warning restore CS0649
 
@@ -26,10 +28,13 @@ public partial class GameBoard : MonoBehaviour
     
     public int Height => _game.BoardHeight;
 
+    public MovingRule MovingRule => _rule;
 
+    
     public void InitializeBoard(AngleGame gameCore)
     {
         _game                                  = gameCore;
+        _rule                                  = _game.Moving;
         _figureCollection                      = new FigureCollection(Width, Height);
         _fadedPanel                            = _fadeBoardTransform.GetComponent<FadedPanel>();
         _fadedPanel.NewPositionSelected       += OnFadedPanelNewPositionSelected;
@@ -71,7 +76,9 @@ public partial class GameBoard : MonoBehaviour
     private void SetFadedPanelOn()
     {
         _fadedPanel.gameObject.SetActive(true);
-        _fadedPanel.PutSelectableTilesOnBoard(_selectedFigure.PointPosition);
+        
+        var tilePositions = _rule.GetAllAvailablePositions(_selectedFigure.PointPosition);
+        _fadedPanel.PutSelectableTilesOnBoard(tilePositions, _selectedFigure.PointPosition);
     }
     
     private void SetFadedPanelOff()
@@ -85,15 +92,31 @@ public partial class GameBoard : MonoBehaviour
         if(!selectedFigure.Owner.Equals(_game.LeadingPlayer))
             return;
         
-        SetSelectedFigure(selectedFigure);
+        _selectedFigure = selectedFigure;
+        if(DeselectSelectedFigure() == false) 
+            Select();
+    }
+
+    private bool DeselectSelectedFigure()
+    {
         if (_selectedFigure.IsSelected)
         {
-            _selectedFigure.IsSelected = false;
-            SetFadedPanelOff();
-            SetSelectedFigureParent(_boardTransform);
-            return;
+            Deselect();
+            return true;
         }
-        
+
+        return false;
+    }
+
+    private void Deselect()
+    {
+        _selectedFigure.IsSelected = false;
+        SetFadedPanelOff();
+        SetSelectedFigureParent(_boardTransform);
+    }
+
+    private void Select()
+    {
         _selectedFigure.IsSelected = true;
         SetFadedPanelOn();
         SetSelectedFigureParent(_fadeBoardTransform);
@@ -125,14 +148,7 @@ public partial class GameBoard : MonoBehaviour
     
     private void OnClickedFadedPanel()
     {
-        SetFadedPanelOff();
-        _selectedFigure.IsSelected = false;
-        SetSelectedFigureParent(_boardTransform);
-    }
-
-    private void SetSelectedFigure(Figure figure)
-    {
-        _selectedFigure = figure;
+        Deselect();
     }
     
     private void SetSelectedFigureParent(Transform parent)

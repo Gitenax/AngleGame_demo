@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Data;
+using MovingRules;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,8 +15,10 @@ public class AngleGame : MonoBehaviour
     [SerializeField] private GameOptions      _gameOptions;
     [SerializeField] private GameBoard        _gameBoard;
     [SerializeField] private int              _gameFormat;    // Формат игры 2х2, 3х3 и т.д.
+    [SerializeField] private MoveRule         _moveType;
                      private Player           _leadingPlayer; // Игрок который в текущий момент ходит
                      private int              _leadingPlayerIndex;
+                     private MovingRule       _movingRule;
 
 
     public event Action<Player> LeadingPlayerSelected;
@@ -30,7 +33,9 @@ public class AngleGame : MonoBehaviour
     
     public Player LeadingPlayer => _leadingPlayer;
 
-    
+    public MovingRule Moving => _movingRule;
+
+
     private void Awake()
     {
         InitializeFields();
@@ -50,11 +55,27 @@ public class AngleGame : MonoBehaviour
         _players     = new List<Player>();
         _playerAreas = new List<PlayerArea>();
         _gameFormat  = (int) _gameOptions.Format;
+        _movingRule = SetMovingRuleForGame(_moveType);
         _gameBoard.InitializeBoard(this);
         _gameBoard.FigureMoved += OnGameBoardFigureMoved;
         _gameBoard.FigureMoving += OnGameBoardFigureMoving;
     }
 
+    private MovingRule SetMovingRuleForGame(MoveRule rule)
+    {
+        switch (rule)
+        {
+            case MoveRule.HorizontalAndVertical:
+                return new MovingOnCardinalPointsRule(_gameBoard);
+            case MoveRule.Diagonal:
+                return new DiagonalMovingRule(_gameBoard);
+            case MoveRule.Free:
+                return new FreeMoveRule(_gameBoard);
+            default:
+                return new FreeMoveRule(_gameBoard);
+        }
+    }
+    
     private void SetPlayersFiguresOnBoard()
     {
         foreach (var player in _players)
@@ -112,9 +133,11 @@ public class AngleGame : MonoBehaviour
     
     private void SetFirstMoveToPlayer()
     {
+        // выбор случайного игрока
         var random = new System.Random(364268844);
         _leadingPlayerIndex = random.Next(0, _players.Count);
 
+        // Первый ход всегда получает игрок если противник бот
         while (_players[_leadingPlayerIndex] is PlayerBot)
         {
             _leadingPlayerIndex = random.Next(0, _players.Count);
@@ -148,7 +171,6 @@ public class AngleGame : MonoBehaviour
                     .ToArray();
 
             
-       
             for (int i = 0; i < enemyAreas.Length; i++)
             {
                 var currentArea = enemyAreas[i];
@@ -197,7 +219,6 @@ public class AngleGame : MonoBehaviour
                index++;
            }
        }
-
        return newArray;
    }
 }

@@ -1,19 +1,23 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class LeadingPlayerDislay : MonoBehaviour
 {
+    #pragma warning disable CS0649
     [SerializeField] private AngleGame _game;
     [SerializeField] private Image     _image;
     [SerializeField] private int       _playerIndex;
                      private Player    _currentPlayer;
-                     private Color     _disabledColor;
-                     private float     _fadeTimer = 1f;
+                     private bool      _playerSelected;
+                     private bool      _playerDeselected;
+                     private float     _lerpTime = 2f;
+    #pragma warning restore CS0649       
+                     
     private void Start()
     {
         _game = FindObjectOfType<AngleGame>();
         _image = GetComponent<Image>();
-        _disabledColor = _image.color;
         
         if (_game != null)
         {
@@ -26,39 +30,30 @@ public class LeadingPlayerDislay : MonoBehaviour
     {
         if (obj.Equals(_currentPlayer))
         {
-            SetBrightColor();
+            _playerSelected = true;
+            _playerDeselected = false;
         }
         else
         {
-            if(_image.color == _disabledColor)
-                return;
-            
-            SetDullColor();
+            if (_playerSelected)
+            {
+                _playerDeselected = true;
+                _playerSelected = false;
+            }
         }
     }
-
-    private void SetBrightColor()
+    
+    private void Update()
     {
-        float elapsed = 0f;
-        float total = _fadeTimer;
+        if(_playerSelected)
+            LerpColor(_currentPlayer.PlayerColor);
         
-        while (elapsed < total)
-        {
-            elapsed += Time.deltaTime;
-            _image.color = Color.Lerp(Color.gray, _currentPlayer.PlayerColor, elapsed);
-        }
+        if(_playerDeselected)
+            LerpColor(Color.gray);
     }
-
-    private void SetDullColor()
+    
+    private void LerpColor(Color to)
     {
-        float elapsed = 0f;
-        float total = _fadeTimer;
-        
-        while (elapsed < total)
-        {
-            elapsed += Time.deltaTime;
-            _image.color = Color.Lerp(_currentPlayer.PlayerColor, Color.gray, elapsed);
-            _disabledColor = _image.color;
-        }
+        _image.color = Color.Lerp(_image.color, to, _lerpTime * Time.deltaTime);
     }
 }

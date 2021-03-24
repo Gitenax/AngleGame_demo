@@ -33,6 +33,13 @@
           <e p="GameBoard.cs" t="Include" />
           <e p="GameBoardHelper.cs" t="Include" />
           <e p="LogicArrayLayout.cs" t="Include" />
+          <e p="MovingRules" t="Include">
+            <e p="DiagonalMovingRule.cs" t="Include" />
+            <e p="FreeMoveRule.cs" t="Include" />
+            <e p="MoveRule.cs" t="Include" />
+            <e p="MovingOnCardinalPointsRule.cs" t="Include" />
+            <e p="MovingRule.cs" t="Include" />
+          </e>
           <e p="Player.cs" t="Include" />
           <e p="PlayerArea.cs" t="Include" />
           <e p="PlayerBot.cs" t="Include" />

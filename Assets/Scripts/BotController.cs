@@ -55,7 +55,7 @@ public class BotController : MonoBehaviour
         bool awaitBotMove = true;
         while (awaitBotMove)
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(Random.Range(0.3f, 2f));
             _gameBoard.MoveFigureTo(selectedFigure, possiblePositions[_random.Next(0, possiblePositions.Length)]);
             awaitBotMove = false;
         }

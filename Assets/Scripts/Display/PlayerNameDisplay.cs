@@ -3,9 +3,11 @@ using UnityEngine.UI;
 
 public class PlayerNameDisplay : MonoBehaviour
 {
+    #pragma warning disable CS0649
     [SerializeField] private AngleGame _game;
     [SerializeField] private Text      _text;
     [SerializeField] private int       _playerIndex;
+    #pragma warning restore CS0649
 
     private void Awake()
     {
