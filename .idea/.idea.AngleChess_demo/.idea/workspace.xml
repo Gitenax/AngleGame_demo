@@ -1,55 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0cb66873-5be3-4eaa-93c7-7ca889c5eb22" name="Default Changelist" comment="Added menus">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/InGameMenu.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/InGameMenu.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Players.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AngleChess_demo/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AngleChess_demo/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AngleChess_demo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AngleChess_demo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Editor/FigureCollectionPropertyDrawer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Editor/FigureCollectionPropertyDrawer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Editor/PlayerPropertyDrawer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Editor/PlayerPropertyDrawer.cs" afterDir="false" />
+    <list default="true" id="0cb66873-5be3-4eaa-93c7-7ca889c5eb22" name="Default Changelist" comment="Updated visual">
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AngleGame.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AngleGame.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BotController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/BotController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BotController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/BotController.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/BlankFigure.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/BlankFigure.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/FigureOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/FigureOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/GameOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/GameOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Display/LeadingPlayerDislay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Display/LeadingPlayerColorDislay.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Display/LeadingPlayerDislay.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Display/LeadingPlayerColorDislay.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Display/PlayerNameDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Display/PlayerNameDisplay.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FadedPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/FadedPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FadedPanel.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/FadedPanel.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Figure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/Figure.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Figure.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/Figure.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FigureCollection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/FigureCollection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FigureCollection.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/FigureCollection.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameBoard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/GameBoard.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameBoard.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/GameBoard.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameBoardHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/GameBoardHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameBoardHelper.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/GameBoardHelper.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LogicArrayLayout.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/LogicArrayLayout.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LogicArrayLayout.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/LogicArrayLayout.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu/FirstScreenMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/FirstScreenMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovingRules/DiagonalMovingRule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MovingRules/DiagonalMovingRule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovingRules/FreeMoveRule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MovingRules/FreeMoveRule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovingRules/MoveRule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MovingRules/MovingRuleType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovingRules/MoveRule.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MovingRules/MovingRuleType.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovingRules/MovingOnCardinalPointsRule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MovingRules/MovingOnCardinalPointsRule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovingRules/MovingRule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MovingRules/MovingRule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/Player.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerArea.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerArea.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerArea.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerArea.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerBot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerBot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerBot.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerBot.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerType.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerType.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectableTile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/SelectableTile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectableTile.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/SelectableTile.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +37,7 @@
     <setting file="file://$PROJECT_DIR$/../Fifteen/Assets/Scripts/Unit/Point.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E81851A0-DC73-4A79-AFA9-F5B7273162BE/ae/60092172/Action`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Misc/BackgroundPanelRotator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/Unity/AngleChess_demo/Assets/Scenes/GameScene.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Fifteen/Assets/Scripts/GameBoard.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Menu/SetPlayersMenu.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -186,7 +141,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1616432003536</updated>
-      <workItem from="1616432007561" duration="80526000" />
+      <workItem from="1616432007561" duration="81319000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1616621060253</created>
@@ -209,7 +164,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616640279770</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Updated visual">
+      <created>1616674663491</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1616674663491</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -222,7 +184,8 @@
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Create moving rule" />
     <MESSAGE value="Added menus" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added menus" />
+    <MESSAGE value="Updated visual" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated visual" />
   </component>
   <component name="WindowStateProjectService">
     <state width="499" height="464" key="DebuggerActiveHint" timestamp="1616607476150">
@@ -297,10 +260,10 @@
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="775" y="256" key="RiderGenerateDialog/62.0.1858.1080@62.0.1858.1080" timestamp="1616626803750" />
-    <state x="583" y="272" key="Vcs.Push.Dialog.v2" timestamp="1616640281490">
+    <state x="583" y="272" key="Vcs.Push.Dialog.v2" timestamp="1616674666801">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state x="583" y="272" key="Vcs.Push.Dialog.v2/62.0.1858.1080@62.0.1858.1080" timestamp="1616640281490" />
+    <state x="583" y="272" key="Vcs.Push.Dialog.v2/62.0.1858.1080@62.0.1858.1080" timestamp="1616674666801" />
     <state x="792" y="446" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1616620950654">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
