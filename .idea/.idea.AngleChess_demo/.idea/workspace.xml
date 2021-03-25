@@ -1,28 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0cb66873-5be3-4eaa-93c7-7ca889c5eb22" name="Default Changelist" comment="Create moving rule">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Helpers.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Helpers/ArrayExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Helpers/ArrayExtensions.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/FirstScreenMenu.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/FirstScreenMenu.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerType.cs.meta" afterDir="false" />
+    <list default="true" id="0cb66873-5be3-4eaa-93c7-7ca889c5eb22" name="Default Changelist" comment="Added menus">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/InGameMenu.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/InGameMenu.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Players.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AngleChess_demo/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AngleChess_demo/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AngleChess_demo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AngleChess_demo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/GameOptions.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/GameOptions.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SelectableTile.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SelectableTile.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Editor/FigureCollectionPropertyDrawer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Editor/FigureCollectionPropertyDrawer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Editor/PlayerPropertyDrawer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Editor/PlayerPropertyDrawer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/New Scene.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/New Scene.unity.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/AngleGame.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AngleGame.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BotController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BotController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FadedPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FadedPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FigureMover.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FigureMover.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameBoardHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameBoardHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BotController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/BotController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BotController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/BotController.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/BlankFigure.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/BlankFigure.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/FigureOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/FigureOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/GameOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/GameOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Display/LeadingPlayerDislay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Display/LeadingPlayerColorDislay.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Display/LeadingPlayerDislay.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Display/LeadingPlayerColorDislay.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Display/PlayerNameDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Display/PlayerNameDisplay.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FadedPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/FadedPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FadedPanel.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/FadedPanel.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Figure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/Figure.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Figure.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/Figure.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FigureCollection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/FigureCollection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FigureCollection.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/FigureCollection.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameBoard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/GameBoard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameBoard.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/GameBoard.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameBoardHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/GameBoardHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameBoardHelper.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/GameBoardHelper.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LogicArrayLayout.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/LogicArrayLayout.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LogicArrayLayout.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/LogicArrayLayout.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu/FirstScreenMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/FirstScreenMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovingRules/DiagonalMovingRule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MovingRules/DiagonalMovingRule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovingRules/FreeMoveRule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MovingRules/FreeMoveRule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovingRules/MoveRule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MovingRules/MovingRuleType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovingRules/MoveRule.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MovingRules/MovingRuleType.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovingRules/MovingOnCardinalPointsRule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MovingRules/MovingOnCardinalPointsRule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovingRules/MovingRule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MovingRules/MovingRule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/Player.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerArea.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerArea.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerArea.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerArea.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerBot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerBot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerBot.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerBot.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerType.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerType.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectableTile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/SelectableTile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectableTile.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayArea/SelectableTile.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +71,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Display/PlayerNameDisplay.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Match3 Game/Assets/Scripts/Grid/Point.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Display/LeadingPlayerDislay.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Display/LeadingPlayerColorDislay.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity/Editor/2020.1.3f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/EventSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/FB001E01-371B-4ADC-A200-13E0AC763896/74/b128d6d4/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Match3 Game/Assets/Scripts/GameBoard.cs" root0="SKIP_HIGHLIGHTING" />
@@ -63,10 +90,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/GameData.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Data/GameOptions.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Data/FigureOptions.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/FigureMover.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Data/BlankFigure.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerPropertyDrawer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Figure.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SelectableTile.cs" />
@@ -77,28 +101,44 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/GameFormat.cs" />
         <option value="$PROJECT_DIR$/Assets/Editor/PlayerPropertyDrawer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerArea.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerBot.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Display/LeadingPlayerDislay.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Display/PlayerNameDisplay.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MovingRules/MoveRule.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Point.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameBoard.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MovingRules/MovingRule.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MovingRules/MovingOnCardinalPointsRule.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MovingRules/DiagonalMovingRule.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MovingRules/FreeMoveRule.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameBoardHelper.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/FadedPanel.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Helpers/ArrayExtensions.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/BotController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Misc/BackgroundPanelRotator.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerType.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Menu/SetGameTypeMenu.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Menu/SetPlayersMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Menu/FirstScreenMeny.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Menu/SetGameTypeMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Menu/FirstScreenMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/FadedPanel.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/BotController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Data/BlankFigure.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Data/FigureOptions.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Data/GameOptions.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Players/BotController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Display/LeadingPlayerColorDislay.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Display/PlayerNameDisplay.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Menu/SetPlayersMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Misc/BackgroundPanelRotator.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MovingRules/MovingRuleType.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MovingRules/MovingRule.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MovingRules/DiagonalMovingRule.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MovingRules/MovingOnCardinalPointsRule.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayArea/FadedPanel.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayArea/Figure.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayArea/FigureCollection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayArea/GameBoard.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayArea/SelectableTile.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Players/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Players/PlayerArea.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Menu/EndGameMemu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Menu/EndGameMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AngleGame.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Menu/InGameMenu.cs" />
       </list>
     </option>
   </component>
@@ -146,7 +186,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1616432003536</updated>
-      <workItem from="1616432007561" duration="73314000" />
+      <workItem from="1616432007561" duration="80526000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1616621060253</created>
@@ -162,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616628837325</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added menus">
+      <created>1616640279770</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1616640279770</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,7 +221,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Create moving rule" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create moving rule" />
+    <MESSAGE value="Added menus" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added menus" />
   </component>
   <component name="WindowStateProjectService">
     <state width="499" height="464" key="DebuggerActiveHint" timestamp="1616607476150">
@@ -249,10 +297,10 @@
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="775" y="256" key="RiderGenerateDialog/62.0.1858.1080@62.0.1858.1080" timestamp="1616626803750" />
-    <state x="583" y="272" key="Vcs.Push.Dialog.v2" timestamp="1616628841465">
+    <state x="583" y="272" key="Vcs.Push.Dialog.v2" timestamp="1616640281490">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state x="583" y="272" key="Vcs.Push.Dialog.v2/62.0.1858.1080@62.0.1858.1080" timestamp="1616628841465" />
+    <state x="583" y="272" key="Vcs.Push.Dialog.v2/62.0.1858.1080@62.0.1858.1080" timestamp="1616640281490" />
     <state x="792" y="446" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1616620950654">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>

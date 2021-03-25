@@ -15,28 +15,22 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="AngleGame.cs" t="Include" />
-          <e p="BotController.cs" t="Include" />
           <e p="Data" t="Include">
-            <e p="BlankFigure.cs" t="Include" />
             <e p="FigureOptions.cs" t="Include" />
             <e p="GameFormat.cs" t="Include" />
             <e p="GameOptions.cs" t="Include" />
           </e>
           <e p="Display" t="Include">
-            <e p="LeadingPlayerDislay.cs" t="Include" />
+            <e p="LeadingPlayerColorDislay.cs" t="Include" />
             <e p="PlayerNameDisplay.cs" t="Include" />
           </e>
-          <e p="FadedPanel.cs" t="Include" />
-          <e p="Figure.cs" t="Include" />
-          <e p="FigureCollection.cs" t="Include" />
-          <e p="GameBoard.cs" t="Include" />
-          <e p="GameBoardHelper.cs" t="Include" />
           <e p="Helpers" t="Include">
             <e p="ArrayExtensions.cs" t="Include" />
           </e>
-          <e p="LogicArrayLayout.cs" t="Include" />
           <e p="Menu" t="Include">
+            <e p="EndGameMenu.cs" t="Include" />
             <e p="FirstScreenMenu.cs" t="Include" />
+            <e p="InGameMenu.cs" t="Include" />
             <e p="SetGameTypeMenu.cs" t="Include" />
             <e p="SetPlayersMenu.cs" t="Include" />
           </e>
@@ -46,16 +40,27 @@
           <e p="MovingRules" t="Include">
             <e p="DiagonalMovingRule.cs" t="Include" />
             <e p="FreeMoveRule.cs" t="Include" />
-            <e p="MoveRule.cs" t="Include" />
             <e p="MovingOnCardinalPointsRule.cs" t="Include" />
             <e p="MovingRule.cs" t="Include" />
+            <e p="MovingRuleType.cs" t="Include" />
           </e>
-          <e p="Player.cs" t="Include" />
-          <e p="PlayerArea.cs" t="Include" />
-          <e p="PlayerBot.cs" t="Include" />
-          <e p="PlayerType.cs" t="Include" />
+          <e p="PlayArea" t="Include">
+            <e p="FadedPanel.cs" t="Include" />
+            <e p="Figure.cs" t="Include" />
+            <e p="FigureCollection.cs" t="Include" />
+            <e p="GameBoard.cs" t="Include" />
+            <e p="GameBoardHelper.cs" t="Include" />
+            <e p="LogicArrayLayout.cs" t="Include" />
+            <e p="SelectableTile.cs" t="Include" />
+          </e>
+          <e p="Players" t="Include">
+            <e p="BotController.cs" t="Include" />
+            <e p="Player.cs" t="Include" />
+            <e p="PlayerArea.cs" t="Include" />
+            <e p="PlayerBot.cs" t="Include" />
+            <e p="PlayerType.cs" t="Include" />
+          </e>
           <e p="Point.cs" t="Include" />
-          <e p="SelectableTile.cs" t="Include" />
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />

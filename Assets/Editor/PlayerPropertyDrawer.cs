@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using Players;
+using UnityEditor;
 using UnityEngine;
 
 [CustomPropertyDrawer(typeof(Player), true)]

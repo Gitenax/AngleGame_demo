@@ -1,4 +1,6 @@
-﻿namespace MovingRules
+﻿using PlayArea;
+
+namespace MovingRules
 {
     public abstract class MovingRule
     {
@@ -6,9 +8,9 @@
         
         
         public abstract Point[] GetAllAvailablePositions(Point position);
+        
         public abstract Point[] GetJumpPoints(Point position);
 
-        
         
         protected bool VerifyPointForEmpty(Point tilePosition)
         {

@@ -7,6 +7,5 @@ namespace Data
     {
         public int FigureWidth;
         public int FigureHeight;
-        public Color FigureColor;
     }
 }

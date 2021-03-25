@@ -1,6 +1,6 @@
 ﻿namespace MovingRules
 {
-    public enum MoveRule
+    public enum MovingRuleType
     {
         Free,
         HorizontalAndVertical,

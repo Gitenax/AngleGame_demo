@@ -4,26 +4,37 @@ using System.Collections.Generic;
 using System.Linq;
 using Data;
 using Helpers;
+using Menu;
 using MovingRules;
+using PlayArea;
+using Players;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class AngleGame : MonoBehaviour
 {
+    #pragma warning disable CS0649
+                     private System.Random    _random;
     [SerializeField] private List<Player>     _players;
     [SerializeField] private BotController    _botController;
     [SerializeField] private List<PlayerArea> _playerAreas;
     [SerializeField] private GameOptions      _gameOptions;
     [SerializeField] private GameBoard        _gameBoard;
     [SerializeField] private int              _gameFormat;    // Формат игры 2х2, 3х3 и т.д.
-    [SerializeField] private MoveRule         _moveType;
+    [SerializeField] private MovingRuleType   _movingType;
                      private Player           _leadingPlayer; // Игрок который в текущий момент ходит
                      private int              _leadingPlayerIndex;
                      private MovingRule       _movingRule;
+    #pragma warning restore CS0649
 
-
+    
     public event Action<Player> LeadingPlayerSelected;
-
+    
+    public event Action<Player, Player> GameEnded;
+    
+    
+    
     public int GameFormat => _gameFormat;
 
     public int BoardWidth => _gameOptions.BoardWidth;
@@ -38,30 +49,47 @@ public class AngleGame : MonoBehaviour
 
     public MovingRule Moving => _movingRule;
 
+    
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    
 
     private void Awake()
     {
         InitializeFields();
-
-
         InitializePlayers();
         // CreatePlayer("Синий", Color.blue, new Point(2, 2));
         // CreatePlayer("Красный", Color.red, new Point(4, 2));
+       
     }
 
     private void Start()
     {
         SetPlayersFiguresOnBoard();
-        SetFirstMoveToPlayer();
+        StartCoroutine(nameof(SelectPlayerForFirstMove));
+    }
+
+    private IEnumerator SelectPlayerForFirstMove()
+    {
+        bool delay = true;
+        while (delay)
+        {
+            yield return new WaitForSeconds(0.2f);
+            SetFirstMoveToPlayer();
+            delay = false;
+        }
     }
 
     private void InitializeFields()
     {
         _players     = new List<Player>();
         _playerAreas = new List<PlayerArea>();
+        _random = new System.Random();
         _gameFormat  = (int) _gameOptions.Format;
-        _moveType = (MoveRule) PlayerPrefs.GetInt("GAME_TYPE");
-        _movingRule = SetMovingRuleForGame(_moveType);
+        _movingType = (MovingRuleType) PlayerPrefs.GetInt("GAME_TYPE");
+        _movingRule = SetMovingRuleForGame(_movingType);
         _gameBoard.InitializeBoard(this);
         _gameBoard.FigureMoved += OnGameBoardFigureMoved;
         _gameBoard.FigureMoving += OnGameBoardFigureMoving;
@@ -73,27 +101,33 @@ public class AngleGame : MonoBehaviour
         var firstPlayerType = (PlayerType)PlayerPrefs.GetInt("PLAYER1_TYPE");        
         var secondPlayerName = PlayerPrefs.GetString("PLAYER2_NAME");
         var secondPlayerType = (PlayerType)PlayerPrefs.GetInt("PLAYER2_TYPE");
+
+        var player1StartPosition = new Point(0, 0);
+        var player2StartPosition = new Point(
+            _gameOptions.BoardWidth - _gameFormat, 
+            _gameOptions.BoardHeight - _gameFormat);;
+        
         
         if(firstPlayerType == PlayerType.Human)
-            CreatePlayer(firstPlayerName, Color.blue, new Point(2, 2));
+            CreatePlayer(firstPlayerName, Color.blue, player1StartPosition);
         else
-            CreateBot(firstPlayerName, Color.blue, new Point(2, 2));
+            CreateBot(firstPlayerName, Color.blue, player1StartPosition);
 
         if(secondPlayerType == PlayerType.Human)
-            CreatePlayer(secondPlayerName, Color.red, new Point(4, 2));
+            CreatePlayer(secondPlayerName, Color.red, player2StartPosition);
         else
-            CreateBot(secondPlayerName, Color.red, new Point(4, 2));
+            CreateBot(secondPlayerName, Color.red, player2StartPosition);
     }
     
-    private MovingRule SetMovingRuleForGame(MoveRule rule)
+    private MovingRule SetMovingRuleForGame(MovingRuleType ruleType)
     {
-        switch (rule)
+        switch (ruleType)
         {
-            case MoveRule.HorizontalAndVertical:
+            case MovingRuleType.HorizontalAndVertical:
                 return new MovingOnCardinalPointsRule(_gameBoard);
-            case MoveRule.Diagonal:
+            case MovingRuleType.Diagonal:
                 return new DiagonalMovingRule(_gameBoard);
-            case MoveRule.Free:
+            case MovingRuleType.Free:
                 return new FreeMoveRule(_gameBoard);
             default:
                 return new FreeMoveRule(_gameBoard);
@@ -123,7 +157,7 @@ public class AngleGame : MonoBehaviour
     private T CreatePlayer<T>(string playerName, Color figuresColor, Point areaOffset) where T : Player
     {
         T player = (T)Activator.CreateInstance(typeof(T), playerName, figuresColor);
-        player.GotOpportunityToMove += OnPlayerGotMove;
+        player.GotOpportunityToMove += plyr => { _leadingPlayer = plyr; };
         
         var playerArea = new PlayerArea(player, _gameBoard, _gameFormat, _gameFormat, areaOffset);
         _players.Add(player);
@@ -131,19 +165,7 @@ public class AngleGame : MonoBehaviour
 
         return player;
     }
-
-    private void OnPlayerGotMove(Player obj)
-    {
-        _leadingPlayer = obj;
-    }
-
-    private Point SecondPlayerOffset()
-    {
-        return new Point(
-            _gameOptions.BoardWidth - _gameFormat,
-            _gameOptions.BoardHeight - _gameFormat);
-    }
-
+    
     private void OnGameBoardFigureMoved()
     {
         CheckWinCondition();
@@ -158,17 +180,42 @@ public class AngleGame : MonoBehaviour
     private void SetFirstMoveToPlayer()
     {
         // выбор случайного игрока
-        var random = new System.Random(364268844);
-        _leadingPlayerIndex = random.Next(0, _players.Count);
+        _leadingPlayerIndex = _random.Next(0, _players.Count);
 
-        // Первый ход всегда получает игрок если противник бот
-        while (_players[_leadingPlayerIndex] is PlayerBot)
+        // Если все игроки являются ботами
+        if (CheckAllPlayersForBot())
         {
-            _leadingPlayerIndex = random.Next(0, _players.Count);
+            SelectPlayerAtIndex(_leadingPlayerIndex);
+            return;
         }
         
-        _players[_leadingPlayerIndex].IsMakeMove = true;
+        // Если есть среди игроков есть бот, то первый ход только игроку
+        while (CheckPlayerForBot(_players[_leadingPlayerIndex]))
+        {
+            _leadingPlayerIndex = _random.Next(0, _players.Count);
+        }
+        SelectPlayerAtIndex(_leadingPlayerIndex);
+    }
+
+    private void SelectPlayerAtIndex(int index)
+    {
+        _players[index].IsMakeMove = true;
         LeadingPlayerSelected?.Invoke(_players[_leadingPlayerIndex]);
+    }
+    
+    private bool CheckAllPlayersForBot()
+    {
+        foreach (var player in _players)
+        {
+            if (!CheckPlayerForBot(player))
+                return false;
+        }
+        return true;
+    }
+    
+    private bool CheckPlayerForBot(Player player)
+    {
+        return player is PlayerBot;
     }
     
     private void GiveMoveToNextPlayer()
@@ -198,12 +245,8 @@ public class AngleGame : MonoBehaviour
             for (int i = 0; i < enemyAreas.Length; i++)
             {
                 var currentArea = enemyAreas[i];
-                
-                
-                
                 var currentAreaPositions = currentArea.Positions.ToSingleArray();
-
-
+                
                 foreach (var position in currentAreaPositions)
                 {
                     var figureToBeingInspected = _gameBoard.GetFigureAtPoint(position);
@@ -227,6 +270,10 @@ public class AngleGame : MonoBehaviour
 
                 if (isWinCondition)
                 {
+                    var endGamePanel = FindObjectOfType<EndGameMenu>(true);
+                    endGamePanel.gameObject.SetActive(true);
+                    // Победитель / проигравший
+                    GameEnded?.Invoke(player, currentArea.Owner);
                     Debug.Log($"<color=green><b>ИГРОК - {currentArea.Owner.Name} - ПРОИГРАЛ!</b></color>");
                 }
             }

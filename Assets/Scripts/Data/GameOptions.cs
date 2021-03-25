@@ -7,7 +7,6 @@ namespace Data
     {
         public int BoardWidth;
         public int BoardHeight;
-        public Color[] AvailableFigureColors;
         public GameFormat Format;
     }
 }

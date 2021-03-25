@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PlayArea;
 
 namespace MovingRules
 {
@@ -12,7 +13,6 @@ namespace MovingRules
         {
             _gameBoard = targetBoard;
         }
-        
         
         public override Point[] GetAllAvailablePositions(Point position)
         {
