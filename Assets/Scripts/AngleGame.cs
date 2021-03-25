@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Data;
+using Helpers;
 using MovingRules;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -30,6 +31,8 @@ public class AngleGame : MonoBehaviour
     public int BoardHeight => _gameOptions.BoardHeight;
 
     public Player[] Players => _players.ToArray();
+
+    public PlayerArea[] PlayerAreas => _playerAreas.ToArray();
     
     public Player LeadingPlayer => _leadingPlayer;
 
@@ -39,9 +42,11 @@ public class AngleGame : MonoBehaviour
     private void Awake()
     {
         InitializeFields();
-        
-        CreatePlayer("Красный", Color.red, new Point(2, 0));
-        CreateBot("BOT", Color.blue, new Point(0, 0));
+
+
+        InitializePlayers();
+        // CreatePlayer("Синий", Color.blue, new Point(2, 2));
+        // CreatePlayer("Красный", Color.red, new Point(4, 2));
     }
 
     private void Start()
@@ -55,12 +60,31 @@ public class AngleGame : MonoBehaviour
         _players     = new List<Player>();
         _playerAreas = new List<PlayerArea>();
         _gameFormat  = (int) _gameOptions.Format;
+        _moveType = (MoveRule) PlayerPrefs.GetInt("GAME_TYPE");
         _movingRule = SetMovingRuleForGame(_moveType);
         _gameBoard.InitializeBoard(this);
         _gameBoard.FigureMoved += OnGameBoardFigureMoved;
         _gameBoard.FigureMoving += OnGameBoardFigureMoving;
     }
 
+    private void InitializePlayers()
+    {
+        var firstPlayerName = PlayerPrefs.GetString("PLAYER1_NAME");
+        var firstPlayerType = (PlayerType)PlayerPrefs.GetInt("PLAYER1_TYPE");        
+        var secondPlayerName = PlayerPrefs.GetString("PLAYER2_NAME");
+        var secondPlayerType = (PlayerType)PlayerPrefs.GetInt("PLAYER2_TYPE");
+        
+        if(firstPlayerType == PlayerType.Human)
+            CreatePlayer(firstPlayerName, Color.blue, new Point(2, 2));
+        else
+            CreateBot(firstPlayerName, Color.blue, new Point(2, 2));
+
+        if(secondPlayerType == PlayerType.Human)
+            CreatePlayer(secondPlayerName, Color.red, new Point(4, 2));
+        else
+            CreateBot(secondPlayerName, Color.red, new Point(4, 2));
+    }
+    
     private MovingRule SetMovingRuleForGame(MoveRule rule)
     {
         switch (rule)
@@ -174,7 +198,10 @@ public class AngleGame : MonoBehaviour
             for (int i = 0; i < enemyAreas.Length; i++)
             {
                 var currentArea = enemyAreas[i];
-                var currentAreaPositions = ConvertToSingleDimentionalArray(currentArea.Positions);
+                
+                
+                
+                var currentAreaPositions = currentArea.Positions.ToSingleArray();
 
 
                 foreach (var position in currentAreaPositions)
@@ -205,21 +232,5 @@ public class AngleGame : MonoBehaviour
             }
         }
     }
-
-    private T[] ConvertToSingleDimentionalArray<T>(T[,] array)
-   {
-       T[] newArray = new T[array.Length];
-       int index = 0;
-       
-       for (int i = 0; i < array.GetLength(0); i++)
-       {
-           for (int j = 0; j < array.GetLength(1); j++)
-           {
-               newArray[index] = array[i, j];
-               index++;
-           }
-       }
-       return newArray;
-   }
 }
     

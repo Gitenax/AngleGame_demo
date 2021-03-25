@@ -29,6 +29,7 @@ public class FadedPanel : MonoBehaviour, IPointerClickHandler
     {
         _currentFigurePosition = currentFigurePosition;
         _exceptPositions.Add(currentFigurePosition);
+        _possibleMultiJump = false;
 
         foreach (var position in positions)
             InstantiateTile(position);
@@ -85,13 +86,17 @@ public class FadedPanel : MonoBehaviour, IPointerClickHandler
         if (selectedTile.IsMultijumpRoot)
         {
             // Смещение одной из фишек
+            _currentFigurePosition = selectedTile.PointPosition;
             OneOfNewPositionsSelected?.Invoke(selectedTile.PointPosition);
             RemoveSelectableTilesFromBoard();
             
             // Проверка на возможность перепрыгнуть соседние фишки
             // возвращает false если нет ходов, соответственно завершая ход игроком
-            if (CheckingPossibleMoves(selectedTile.PointPosition, out Point[] available))
+            if (CheckingPossibleMoves(_currentFigurePosition, out Point[] available))
+            {
+                _possibleMultiJump = true;
                 RePutSelectableTilesOnBoard(available);
+            }
             else
                 MultiJumpCancelled?.Invoke();
         }

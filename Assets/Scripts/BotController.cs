@@ -1,17 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Helpers;
 using UnityEngine;
 
 
 public class BotController : MonoBehaviour
 {
-                     private System.Random   _random;
-    [SerializeField] private List<PlayerBot> _bots;
-    [SerializeField] private AngleGame       _game;
-    [SerializeField] private GameBoard       _gameBoard;
-    [SerializeField] private FadedPanel      _fadedPanel;
-                     private PlayerBot       _leadingBot;
+                     private System.Random    _random;
+    [SerializeField] private List<PlayerBot>  _bots;
+                     private List<PlayerArea> _enemyAreas;
+    [SerializeField] private AngleGame        _game;
+    [SerializeField] private GameBoard        _gameBoard;
+    [SerializeField] private FadedPanel       _fadedPanel;
+                     private PlayerBot        _leadingBot;
     
     public void AddBot(PlayerBot bot)
     {
@@ -23,6 +25,7 @@ public class BotController : MonoBehaviour
     {
         _random     = new System.Random();
         _bots       = new List<PlayerBot>();
+        _enemyAreas = new List<PlayerArea>();
         _game       = FindObjectOfType<AngleGame>();
         _gameBoard  = FindObjectOfType<GameBoard>();
         _fadedPanel = FindObjectOfType<FadedPanel>();
@@ -49,7 +52,7 @@ public class BotController : MonoBehaviour
     {
         var botFigures = GetBotFigures();
         var selectedFigure = GetRandomAvailableFigure(botFigures);
-        var possiblePositions = _gameBoard.CheckVerticalAndHorizontalSpace(selectedFigure.PointPosition);
+        var possiblePositions = _gameBoard.MovingRule.GetAllAvailablePositions(selectedFigure.PointPosition);
         
         // Переместить фигуру в случайную позицию
         bool awaitBotMove = true;
@@ -72,13 +75,53 @@ public class BotController : MonoBehaviour
     {
         // Поиск фигур которыми можно ходить
         var availableFigures = new List<Figure>();
+        var enemyAreas = _game.PlayerAreas.Where(area => !area.Owner.Equals(_leadingBot)).ToArray();
+        
         foreach (var figure in figures)
         {
-            if(_gameBoard.VerifyMovableFigure(figure.PointPosition))
+            // Если данная фигура имеет ходы
+            var currentFigureMoves = _gameBoard.MovingRule.GetAllAvailablePositions(figure.PointPosition);
+            if (currentFigureMoves.Length > 0)
+            {
+                // // Проверка всех доступных ходов, на достижение зоны оппонента
+                // foreach (var figureMove in currentFigureMoves)
+                // {
+                //     var nearestArea = FindNearestEnemyArea(enemyAreas, figureMove);
+                //     
+                //     
+                //     
+                // }
+                
                 availableFigures.Add(figure);
+            }
         }
         
         // Выбор случайной фигуры из возможных
         return availableFigures[_random.Next(0, availableFigures.Count)];
     }
+
+
+    // private PlayerArea FindNearestEnemyArea(PlayerArea[] areas, Point currentPosition)
+    // {
+    //     foreach (var area in areas)
+    //     {
+    //         var areaPoints = area.Positions.ToSingleArray();
+    //         foreach (var areaPoint in areaPoints)
+    //         {
+    //             
+    //         }
+    //         
+    //         
+    //     }
+    // }
+    //
+    // private int CheckDestinationToTarget()
+    // {
+    //     
+    // }
+    //
+    // private bool VerifyDirectionToEnemyArea()
+    // {
+    //     
+    // }
 }
