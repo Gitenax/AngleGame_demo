@@ -5,23 +5,33 @@ using UnityEngine.EventSystems;
 
 namespace PlayArea
 {
-    public class FadedPanel : MonoBehaviour, IPointerClickHandler
+    public sealed class FadedPanel : MonoBehaviour, IPointerClickHandler
     {
-        #pragma warning disable CS0649
-        [SerializeField] private SelectableTile       _selectableTilePrefab;
-        [SerializeField] private GameBoard            _gameBoard;
-                         private List<SelectableTile> _tiles;
-                         private bool                 _possibleMultiJump;
-                         private Point                _currentFigurePosition;
-                         private List<Point>          _exceptPositions;
-        #pragma warning restore CS0649
-    
-    
+#pragma warning disable CS0649
+        [SerializeField] private SelectableTile _selectableTilePrefab;
+        [SerializeField] private GameBoard _gameBoard;
+        private List<SelectableTile> _tiles;
+        private List<Point> _exceptPositions;
+        private Point _currentFigurePosition;
+        private bool _possibleMultiJump;
+#pragma warning restore CS0649
+        
         public event Action<Point> NewPositionSelected;
         public event Action<Point> OneOfNewPositionsSelected;
-        public event Action        Cancelled;
-        public event Action        MultiJumpCancelled;
-        
+        public event Action Cancelled;
+        public event Action MultiJumpCancelled;
+
+        private void Awake()
+        {
+            _tiles = new List<SelectableTile>();
+            _exceptPositions = new List<Point>();
+        }
+
+        private void OnDisable()
+        {
+            RemoveSelectableTilesFromBoard();
+            _exceptPositions.Clear();
+        }
 
         public void PutSelectableTilesOnBoard(Point[] positions, Point currentFigurePosition)
         {
@@ -29,7 +39,7 @@ namespace PlayArea
             _exceptPositions.Add(currentFigurePosition);
             _possibleMultiJump = false;
 
-            foreach (var position in positions)
+            foreach (Point position in positions)
                 InstantiateTile(position);
         }
 
@@ -41,19 +51,6 @@ namespace PlayArea
                 Cancelled?.Invoke();
         }
 
-    
-        private void Awake()
-        {
-            _tiles = new List<SelectableTile>();
-            _exceptPositions = new List<Point>();
-        }
-    
-        private void OnDisable()
-        {
-            RemoveSelectableTilesFromBoard();
-            _exceptPositions.Clear();
-        }
-    
         private void RePutSelectableTilesOnBoard(Point[] availablePositions)
         {
             foreach (Point point in availablePositions)
@@ -62,7 +59,7 @@ namespace PlayArea
     
         private void RemoveSelectableTilesFromBoard()
         {
-            foreach (var tile in _tiles)
+            foreach (SelectableTile tile in _tiles)
             {
                 tile.TileSelected -= OnSelectableTileSelected;
                 Destroy(tile.gameObject);
@@ -72,7 +69,7 @@ namespace PlayArea
     
         private void InstantiateTile(Point tilePosition)
         {
-            var tile = Instantiate(_selectableTilePrefab, transform);
+            SelectableTile tile = Instantiate(_selectableTilePrefab, transform);
             tile.InitializeFields(tilePosition);
             tile.IsMultijumpRoot = tilePosition.Node;
             tile.TileSelected += OnSelectableTileSelected;
@@ -96,21 +93,22 @@ namespace PlayArea
                     RePutSelectableTilesOnBoard(available);
                 }
                 else
+                {
                     MultiJumpCancelled?.Invoke();
+                }
+                return;
             }
-            else
-            {
-                NewPositionSelected?.Invoke(selectedTile.PointPosition);
-            }
+
+            NewPositionSelected?.Invoke(selectedTile.PointPosition);
         }
 
         private bool CheckingPossibleMoves(Point position, out Point[] available)
         {
             var availableTilePos = new HashSet<Point>();
-            var allPositions =  _gameBoard.MovingRule.GetJumpPoints(position);
+            Point[] allPositions =  _gameBoard.MovingRule.GetJumpPoints(position);
             _exceptPositions.Add(position);
         
-            foreach (var point in allPositions)
+            foreach (Point point in allPositions)
                 availableTilePos.Add(point);
         
             // Удалить предыдущую позицию(т.е. убрать ход назад)

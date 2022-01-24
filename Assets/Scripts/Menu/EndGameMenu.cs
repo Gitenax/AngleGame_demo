@@ -5,22 +5,27 @@ using UnityEngine.UI;
 
 namespace Menu
 {
-    public class EndGameMenu : MonoBehaviour
+    public sealed class EndGameMenu : MonoBehaviour
     {
-        #pragma warning disable CS0649
-        [SerializeField] private Text      _winnerText;
+#pragma warning disable CS0649
+        [SerializeField] private Text _winnerText;
         [SerializeField] private AngleGame _game;
-        
-        [Header("Кнопки")]
-        [SerializeField] private Button    _restartButton;
-        [SerializeField] private Button    _menuButton;
-        #pragma warning restore CS0649
+
+        [Header("Кнопки")] 
+        [SerializeField] private Button _restartButton;
+        [SerializeField] private Button _menuButton;
+#pragma warning restore CS0649
         
         private void Awake()
         {
             _restartButton.onClick.AddListener(_game.Restart);
             _menuButton.onClick.AddListener(LoadMainMenu);
             _game.GameEnded += OnEndGame;
+        }
+
+        private void OnDestroy()
+        {
+            _game.GameEnded -= OnEndGame;
         }
 
         private void OnEndGame(Player winner, Player loser)

@@ -7,15 +7,14 @@ namespace Players
     [Serializable]
     public class PlayerArea
     {
-        [SerializeField] private Player           _owner;
+        [SerializeField] private Player _owner;
         [SerializeField] private LogicArrayLayout _occupied;
-                         private Point[,]         _area;
-                         private int              _width;
-                         private int              _height;
-                         private int              _offsetX;
-                         private int              _offsetY;
-
-
+        private Point[,] _area;
+        private int _width;
+        private int _height;
+        private int _offsetX;
+        private int _offsetY;
+        
         public PlayerArea(Player owner, GameBoard board, int width, int height, Point offset)
         {
             _area = new Point[height, width];
@@ -25,15 +24,12 @@ namespace Players
             _height = height;
             _offsetX = offset.X;
             _offsetY = offset.Y;
-
             FillArray();
         }
-
-
+        
         public Point[,] Positions => _area;
 
         public Player Owner => _owner;
-
 
         private void FillArray()
         {

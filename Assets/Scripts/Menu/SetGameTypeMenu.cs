@@ -4,29 +4,29 @@ using UnityEngine.UI;
 
 namespace Menu
 {
-    public class SetGameTypeMenu : MonoBehaviour
+    public sealed class SetGameTypeMenu : MonoBehaviour
     {
-        #pragma warning disable CS0649
+#pragma warning disable CS0649
         [Header("Переключатели")] 
-        [SerializeField] private Toggle   _optionOneToggle;
-        [SerializeField] private Toggle   _optionTwoToggle;
-        [SerializeField] private Toggle   _optionThreeToggle;
-        [SerializeField] private Button   _okButton;
-        
-        [Header("Описание")]
-        [SerializeField] private Text     _optionOneLabel;
-        [SerializeField] private Text     _optionOneDescription;
-        [SerializeField] private Text     _optionTwoLabel;
-        [SerializeField] private Text     _optionTwoDescription;
-        [SerializeField] private Text     _optionThreeLabel;
-        [SerializeField] private Text     _optionThreeDescription;
+        [SerializeField] private Toggle _optionOneToggle;
+        [SerializeField] private Toggle _optionTwoToggle;
+        [SerializeField] private Toggle _optionThreeToggle;
+        [SerializeField] private Button _okButton;
+
+        [Header("Описание")] 
+        [SerializeField] private Text _optionOneLabel;
+        [SerializeField] private Text _optionOneDescription;
+        [SerializeField] private Text _optionTwoLabel;
+        [SerializeField] private Text _optionTwoDescription;
+        [SerializeField] private Text _optionThreeLabel;
+        [SerializeField] private Text _optionThreeDescription;
 
         [Header("Режим игры")] 
-        [SerializeField] private MovingRuleType SelectedRuleType = MovingRuleType.HorizontalAndVertical;
+        [SerializeField] private MovingRuleType _selectedRuleType = MovingRuleType.HorizontalAndVertical;
 
         [Header("Слудующее меню")] 
         [SerializeField] private SetPlayersMenu _nextMenu;
-        #pragma warning restore CS0649
+#pragma warning restore CS0649
 
 
         private void Awake()
@@ -43,7 +43,7 @@ namespace Menu
             {
                 _optionOneLabel.gameObject.SetActive(true);
                 _optionOneDescription.gameObject.SetActive(true);
-                SelectedRuleType = MovingRuleType.HorizontalAndVertical;
+                _selectedRuleType = MovingRuleType.HorizontalAndVertical;
             }
             else
             {
@@ -58,7 +58,7 @@ namespace Menu
             {
                 _optionTwoLabel.gameObject.SetActive(true);
                 _optionTwoDescription.gameObject.SetActive(true);
-                SelectedRuleType = MovingRuleType.Diagonal;
+                _selectedRuleType = MovingRuleType.Diagonal;
             }
             else
             {
@@ -73,7 +73,7 @@ namespace Menu
             {
                 _optionThreeLabel.gameObject.SetActive(true);
                 _optionThreeDescription.gameObject.SetActive(true);
-                SelectedRuleType = MovingRuleType.Free;
+                _selectedRuleType = MovingRuleType.Free;
             }
             else
             {
@@ -84,7 +84,7 @@ namespace Menu
 
         private void ButtonClick()
         {
-            PlayerPrefs.SetInt("GAME_TYPE", (int)SelectedRuleType);
+            PlayerPrefs.SetInt("GAME_TYPE", (int)_selectedRuleType);
             _nextMenu.gameObject.SetActive(true);
             gameObject.SetActive(false);
         }

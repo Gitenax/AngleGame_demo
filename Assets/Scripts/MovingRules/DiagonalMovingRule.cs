@@ -7,32 +7,33 @@ namespace MovingRules
     /// <para>Перемещение фишек по диагонали</para>
     /// <para>Входит возможность перепрыгивать рядом стояшую фишку</para>
     /// </summary>
-    public class DiagonalMovingRule : MovingRule
+    public sealed class DiagonalMovingRule : MovingRule
     {
         public DiagonalMovingRule(GameBoard targetBoard)
         {
-            _gameBoard = targetBoard;
+            GameBoard = targetBoard;
         }
         
         public override Point[] GetAllAvailablePositions(Point position)
         {
             var availablePositions = new List<Point>();
-            foreach (var diagonal in Point.Diagonals)
+            
+            foreach (Point diagonal in Point.Diagonals)
             {
                 var nextToPosition = position + diagonal;
                 if(VerifyPointForEmpty(nextToPosition))
                 {
                     availablePositions.Add(nextToPosition);
+                    continue;
                 }
-                else
-                {
-                    nextToPosition += diagonal;
-                    if(VerifyPointForEmpty(nextToPosition))
-                    {
-                        nextToPosition.Node = true;
-                        availablePositions.Add(nextToPosition);
-                    }
-                }
+
+                nextToPosition += diagonal;
+                
+                if (!VerifyPointForEmpty(nextToPosition))
+                    continue;
+                
+                nextToPosition.Node = true;
+                availablePositions.Add(nextToPosition);
             }
             
             return availablePositions.ToArray();
@@ -41,18 +42,17 @@ namespace MovingRules
         public override Point[] GetJumpPoints(Point position)
         {
             var availablePositions = new List<Point>();
-            foreach (var diagonal in Point.Diagonals)
+            
+            foreach (Point diagonal in Point.Diagonals)
             {
-                var nextToPosition = position + diagonal;
+                Point nextToPosition = position + diagonal;
 
-                if (VerifyPointForEmpty(nextToPosition) == false)
-                {
-                    nextToPosition += diagonal;
-                    if(VerifyPointForEmpty(nextToPosition))
-                    {
-                        availablePositions.Add(nextToPosition);
-                    }
-                }
+                if (VerifyPointForEmpty(nextToPosition) != false)
+                    continue;
+                
+                nextToPosition += diagonal;
+                if(VerifyPointForEmpty(nextToPosition))
+                    availablePositions.Add(nextToPosition);
             }
             
             return availablePositions.ToArray();

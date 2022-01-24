@@ -5,24 +5,24 @@ using UnityEngine.UI;
 
 namespace Menu
 {
-    public class SetPlayersMenu : MonoBehaviour
+    public sealed class SetPlayersMenu : MonoBehaviour
     {
-        #pragma warning disable CS0649
-        [Header("Параметры игроков")]
-        [SerializeField] private string          _firstPlayerName;
-        [SerializeField] private PlayerType      _firstPlayerType;
-        [SerializeField] private string          _secondPlayerName;
-        [SerializeField] private PlayerType      _secondPlayerType;
+#pragma warning disable CS0649
+        [Header("Параметры игроков")] 
+        [SerializeField] private string _firstPlayerName;
+        [SerializeField] private PlayerType _firstPlayerType;
+        [SerializeField] private string _secondPlayerName;
+        [SerializeField] private PlayerType _secondPlayerType;
 
         [Header("Элементы управления")] 
-        [SerializeField] private InputField      _firstPlayerInputField;
-        [SerializeField] private Dropdown        _firstPlayerDropdown;
-        [SerializeField] private InputField      _secondPlayerInputField;
-        [SerializeField] private Dropdown        _secondPlayerDropdown;
-        [SerializeField] private Button          _okButton;
-        [SerializeField] private Button          _backButton;
+        [SerializeField] private InputField _firstPlayerInputField;
+        [SerializeField] private Dropdown _firstPlayerDropdown;
+        [SerializeField] private InputField _secondPlayerInputField;
+        [SerializeField] private Dropdown _secondPlayerDropdown;
+        [SerializeField] private Button _okButton;
+        [SerializeField] private Button _backButton;
         [SerializeField] private SetGameTypeMenu _previousMenu;
-        #pragma warning restore CS0649
+#pragma warning restore CS0649
 
         private void Awake()
         {
@@ -33,12 +33,12 @@ namespace Menu
         private void VerifyData()
         {
             SetDataFromFields();
+
+            if (!CheckCorrectNames())
+                return;
             
-            if(CheckCorrectNames())
-            {
-                SaveDataToPrefs();
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
+            SaveDataToPrefs();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         
         private void ShowPreviousMenu()
@@ -58,18 +58,18 @@ namespace Menu
         
         private bool CheckCorrectNames()
         {
-            if (_firstPlayerName.Trim().Length == 0 || _secondPlayerName.Trim().Length == 0)
+            string logMessage = (_firstPlayerName, _secondPlayerName) switch
             {
-                Debug.Log("<color=red>Одно из имен не заполнено!</color>");
-                return false;
-            }
+                var (f, s) when f.Trim().Length == 0 || s.Trim().Length == 0 => "<color=red>Одно из имен не заполнено!</color>",
+                var (f, s) when f.CompareTo(s) == 0 => "<color=red>Игроки не могут иметь одинаковые имена</color>",
+                _ => null
+            };
 
-            if (_firstPlayerName.CompareTo(_secondPlayerName) == 0)
-            {
-                Debug.Log("<color=red>Игроки не могут иметь одинаковые имена</color>");
-                return false;
-            }
-            return true;
+            if (string.IsNullOrEmpty(logMessage))
+                return true;
+            
+            Debug.Log(logMessage);
+            return false;
         }
 
         private void SaveDataToPrefs()

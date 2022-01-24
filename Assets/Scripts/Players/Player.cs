@@ -6,17 +6,12 @@ namespace Players
     [Serializable]
     public class Player
     {
-        #pragma warning disable CS0649
+#pragma warning disable CS0649
         [SerializeField] protected string _name;
-                         protected Color  _color;
-                         protected bool   _isMakeMove;
-        #pragma warning restore CS0649
+        private Color _color;
+        private bool _isMakeMove;
+#pragma warning restore CS0649
 
-
-        public event Action<Player> GotOpportunityToMove;
-        public event Action<Player> LostOpportunityToMove;
-    
-    
         public Player(string playerName, Color playerColor)
         {
             _name  = playerName;
@@ -24,7 +19,9 @@ namespace Players
             _isMakeMove = false;
         }
 
-        
+        public event Action<Player> GotOpportunityToMove;
+        public event Action<Player> LostOpportunityToMove;
+
         public string Name => _name;
 
         public Color PlayerColor
@@ -46,18 +43,9 @@ namespace Players
             }
         }
 
-
         public override bool Equals(object obj)
         {
-            if (obj is Player player)
-                return _name == player.Name;
-
-            return false;
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
+            return obj is Player player && _name == player.Name;
         }
     }
 }

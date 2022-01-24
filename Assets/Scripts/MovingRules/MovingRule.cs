@@ -4,27 +4,21 @@ namespace MovingRules
 {
     public abstract class MovingRule
     {
-        protected GameBoard _gameBoard;
-        
+        protected GameBoard GameBoard;
         
         public abstract Point[] GetAllAvailablePositions(Point position);
         
         public abstract Point[] GetJumpPoints(Point position);
 
-        
         protected bool VerifyPointForEmpty(Point tilePosition)
         {
-            if (CheckingPointWithin(tilePosition))
-                return _gameBoard.Figures[tilePosition] == null;
-            
-            return false;
+            return CheckingPointWithin(tilePosition) && GameBoard.Figures[tilePosition] == null;
         }
-        
         
         private bool CheckingPointWithin(Point point)
         {
-            return ((point.X >= 0 && point.X < _gameBoard.Width) 
-                    && (point.Y >= 0 && point.Y < _gameBoard.Height));
+            return (point.X >= 0 && point.X < GameBoard.Width) 
+                   && (point.Y >= 0 && point.Y < GameBoard.Height);
         }
     }
 }

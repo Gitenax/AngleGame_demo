@@ -3,14 +3,14 @@ using UnityEngine.UI;
 
 namespace Display
 {
-    public class PlayerNameDisplay : MonoBehaviour
+    [RequireComponent(typeof(Text))]
+    public sealed class PlayerNameDisplay : MonoBehaviour
     {
-        #pragma warning disable CS0649
+#pragma warning disable CS0649
         [SerializeField] private AngleGame _game;
-        [SerializeField] private Text      _text;
-        [SerializeField] private int       _playerIndex;
-        #pragma warning restore CS0649
-
+        [SerializeField] private Text _text;
+        [SerializeField] private int _playerIndex;
+#pragma warning restore CS0649
         
         private void Awake()
         {
@@ -20,8 +20,8 @@ namespace Display
 
         private void Start()
         {
-            _text.text = _game!= null 
-                ? _game.Players[_playerIndex].Name 
+            _text.text = _game != null
+                ? _game.Players[_playerIndex].Name
                 : $"Игрок {_playerIndex}";
         }
     }

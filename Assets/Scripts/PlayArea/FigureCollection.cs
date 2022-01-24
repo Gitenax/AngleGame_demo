@@ -4,20 +4,19 @@ using UnityEngine;
 namespace PlayArea
 {
     [Serializable]
-    public class FigureCollection
+    public sealed class FigureCollection
     {
         [SerializeField] private LogicArrayLayout _occupied; // Логический массив занятых ячеек
-                         private Figure[,]        _figures;  // Непосредственно сам массив игровых фигур
-                         private int              _width;    // Ширина массива т.е. шириина игровой доски
-                         private int              _height;   // Высота массива т.е. высота игровой доски
-
-
+        private Figure[,] _figures; // Непосредственно сам массив игровых фигур
+        private int _width; // Ширина массива т.е. шириина игровой доски
+        private int _height; // Высота массива т.е. высота игровой доски
+        
         public FigureCollection(int width, int height)
         {
-            _figures  = new Figure[width, height];
+            _figures = new Figure[width, height];
             _occupied = new LogicArrayLayout(width, height);
-            _width    = width;
-            _height   = height;
+            _width = width;
+            _height = height;
         }
         
         public Figure this[int x, int y]
@@ -39,11 +38,11 @@ namespace PlayArea
             set
             {
                 var (x, y) = (point.X, point.Y);
-                if ((x >= 0 && x < _width) && (y >= 0 && y < _height))
-                {
-                    _figures[x, y] = value;
-                    _occupied.Rows[y].Columns[x] = value != null;
-                }
+                if ((x < 0 || x >= _width) || (y < 0 || y >= _height))
+                    return;
+                
+                _figures[x, y] = value;
+                _occupied.Rows[y].Columns[x] = value != null;
             }
         }
 
@@ -63,17 +62,15 @@ namespace PlayArea
                 this[figureOldPoint] = default;
 
                 UpdateFigurePosition(this[figureNewPoint], figureNewPoint);
+                return;
             }
-            else
-            {
-                this[figureOldPoint] = this[figureNewPoint];
-                this[figureNewPoint] = temp;
-            
-                UpdateFigurePosition(this[figureOldPoint], figureOldPoint);
-                UpdateFigurePosition(this[figureNewPoint], figureNewPoint);
-            }
-        }
 
+            this[figureOldPoint] = this[figureNewPoint];
+            this[figureNewPoint] = temp;
+            
+            UpdateFigurePosition(this[figureOldPoint], figureOldPoint);
+            UpdateFigurePosition(this[figureNewPoint], figureNewPoint);
+        }
         
         private void UpdateFigurePosition(Figure figure, Point newPosition)
         {

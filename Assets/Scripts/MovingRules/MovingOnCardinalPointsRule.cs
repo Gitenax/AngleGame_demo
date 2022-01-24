@@ -7,32 +7,32 @@ namespace MovingRules
     /// <para>Перемещение фишек по 4-м направлениям сторон света (или просто по горизонтали и вертикали)</para>
     /// <para>Входит возможность перепрыгивать рядом стояшую фишку</para>
     /// </summary>
-    public class MovingOnCardinalPointsRule : MovingRule
+    public sealed class MovingOnCardinalPointsRule : MovingRule
     {
         public MovingOnCardinalPointsRule(GameBoard targetBoard)
         {
-            _gameBoard = targetBoard;
+            GameBoard = targetBoard;
         }
         
         public override Point[] GetAllAvailablePositions(Point position)
         {
             var availablePositions = new List<Point>();
-            foreach (var direction in Point.Directions)
+            foreach (Point direction in Point.Directions)
             {
-                var nextToPosition = position + direction;
+                Point nextToPosition = position + direction;
+                
                 if(VerifyPointForEmpty(nextToPosition))
                 {
                     availablePositions.Add(nextToPosition);
+                    continue;
                 }
-                else
-                {
-                    nextToPosition += direction;
-                    if(VerifyPointForEmpty(nextToPosition))
-                    {
-                        nextToPosition.Node = true;
-                        availablePositions.Add(nextToPosition);
-                    }
-                }
+
+                nextToPosition += direction;
+                if (!VerifyPointForEmpty(nextToPosition))
+                    continue;
+                
+                nextToPosition.Node = true;
+                availablePositions.Add(nextToPosition);
             }
             
             return availablePositions.ToArray();
@@ -41,18 +41,16 @@ namespace MovingRules
         public override Point[] GetJumpPoints(Point position)
         {
             var availablePositions = new List<Point>();
-            foreach (var direction in Point.Directions)
+            foreach (Point direction in Point.Directions)
             {
-                var nextToPosition = position + direction;
+                Point nextToPosition = position + direction;
 
-                if (VerifyPointForEmpty(nextToPosition) == false)
-                {
-                    nextToPosition += direction;
-                    if(VerifyPointForEmpty(nextToPosition))
-                    {
-                        availablePositions.Add(nextToPosition);
-                    }
-                }
+                if (VerifyPointForEmpty(nextToPosition))
+                    continue;
+                
+                nextToPosition += direction;
+                if (VerifyPointForEmpty(nextToPosition))
+                    availablePositions.Add(nextToPosition);
             }
             
             return availablePositions.ToArray();

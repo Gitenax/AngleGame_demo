@@ -1,6 +1,6 @@
 ﻿namespace PlayArea
 {
-    public partial class GameBoard
+    public sealed partial class GameBoard
     {
         /// <summary>
         /// Получить фигуру в указанной точке
@@ -8,10 +8,9 @@
         /// <param name="position">Положение фигуры на доске</param>
         public Figure GetFigureAtPoint(Point position)
         {
-            if(CheckingPointWithin(position))
-                return _figureCollection[position];
-
-            return default;
+            return CheckingPointWithin(position)
+                ? _figureCollection[position]
+                : default;
         }
     
         /// <summary>
@@ -19,8 +18,7 @@
         /// </summary>
         private bool CheckingPointWithin(Point point)
         {
-            return ((point.X >= 0 && point.X < Width) 
-                    && (point.Y >= 0 && point.Y < Height));
+            return (point.X >= 0 && point.X < Width) && (point.Y >= 0 && point.Y < Height);
         }
     }
 }

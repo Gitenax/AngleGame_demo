@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using PlayArea;
 
 namespace MovingRules
@@ -7,11 +8,11 @@ namespace MovingRules
     /// <para>Перемещение фишек в любом направлении</para>
     /// <para>Отсутствует возможность перепрыгивать рядом стояшую фишку</para>
     /// </summary>
-    public class FreeMoveRule : MovingRule
+    public sealed class FreeMoveRule : MovingRule
     {
         public FreeMoveRule(GameBoard targetBoard)
         {
-            _gameBoard = targetBoard;
+            GameBoard = targetBoard;
         }
         
         public override Point[] GetAllAvailablePositions(Point position)
@@ -21,13 +22,11 @@ namespace MovingRules
             allDirections.AddRange(Point.Diagonals);
             allDirections.AddRange(Point.Directions);
             
-            foreach (var direction in allDirections)
+            foreach (Point direction in allDirections)
             {
-                var nextToPosition = position + direction;
-                if(VerifyPointForEmpty(nextToPosition))
-                {
+                Point nextToPosition = position + direction;
+                if (VerifyPointForEmpty(nextToPosition))
                     availablePositions.Add(nextToPosition);
-                }
             }
             
             return availablePositions.ToArray();
@@ -35,7 +34,7 @@ namespace MovingRules
 
         public override Point[] GetJumpPoints(Point position)
         {
-            return new Point[0];
+            return Array.Empty<Point>();
         }
     }
 }
