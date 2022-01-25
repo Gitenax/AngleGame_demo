@@ -1,6 +1,6 @@
-﻿using PlayArea;
+﻿using Gitenax.AngleCheckers.PlayArea;
 
-namespace MovingRules
+namespace Gitenax.AngleCheckers.MovingRules
 {
     public abstract class MovingRule
     {

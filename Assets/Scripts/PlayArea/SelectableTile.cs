@@ -1,9 +1,9 @@
 ﻿using System;
-using Data;
+using Gitenax.AngleCheckers.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace PlayArea
+namespace Gitenax.AngleCheckers.PlayArea
 {
     [RequireComponent(typeof(RectTransform))]
     public sealed class SelectableTile : MonoBehaviour, IPointerClickHandler

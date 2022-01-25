@@ -1,4 +1,4 @@
-﻿namespace MovingRules
+﻿namespace Gitenax.AngleCheckers.MovingRules
 {
     public enum MovingRuleType
     {

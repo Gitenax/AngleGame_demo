@@ -1,4 +1,4 @@
-﻿namespace Players
+﻿namespace Gitenax.AngleCheckers.Players
 {
     public enum PlayerType
     {

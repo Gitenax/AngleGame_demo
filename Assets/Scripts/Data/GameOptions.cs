@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Data
+namespace Gitenax.AngleCheckers.Data
 {
     [CreateAssetMenu(fileName = "GameOptions", menuName = "Game Options", order = 0)]
     public class GameOptions : ScriptableObject

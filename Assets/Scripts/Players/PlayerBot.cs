@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Players
+namespace Gitenax.AngleCheckers.Players
 {
     [Serializable]
     public sealed class PlayerBot : Player

@@ -1,8 +1,8 @@
-﻿using MovingRules;
+﻿using Gitenax.AngleCheckers.MovingRules;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Menu
+namespace Gitenax.AngleCheckers.Menu
 {
     public sealed class SetGameTypeMenu : MonoBehaviour
     {

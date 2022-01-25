@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using PlayArea;
+using Gitenax.AngleCheckers.PlayArea;
 
-namespace MovingRules
+namespace Gitenax.AngleCheckers.MovingRules
 {
     /// <summary>
     /// <para>Перемещение фишек в любом направлении</para>

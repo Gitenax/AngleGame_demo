@@ -1,8 +1,8 @@
-﻿using PlayArea;
+﻿using Gitenax.AngleCheckers.PlayArea;
 using UnityEditor;
 using UnityEngine;
 
-namespace Editor
+namespace Gitenax.AngleCheckers.Editor
 {
     [CustomPropertyDrawer(typeof(LogicArrayLayout))]
     public class FigureCollectionPropertyDrawer : PropertyDrawer

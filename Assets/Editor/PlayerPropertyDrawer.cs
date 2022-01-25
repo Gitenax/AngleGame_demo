@@ -1,4 +1,4 @@
-﻿using Players;
+﻿using Gitenax.AngleCheckers.Players;
 using UnityEditor;
 using UnityEngine;
 

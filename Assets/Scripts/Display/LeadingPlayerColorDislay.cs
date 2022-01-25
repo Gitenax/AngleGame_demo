@@ -1,8 +1,8 @@
-﻿using Players;
+﻿using Gitenax.AngleCheckers.Players;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Display
+namespace Gitenax.AngleCheckers.Display
 {
     [RequireComponent(typeof(Image))]
     public sealed class LeadingPlayerColorDislay : MonoBehaviour

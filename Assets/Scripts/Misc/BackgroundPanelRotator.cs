@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Misc
+namespace Gitenax.AngleCheckers.Misc
 {
     public sealed class BackgroundPanelRotator : MonoBehaviour
     {

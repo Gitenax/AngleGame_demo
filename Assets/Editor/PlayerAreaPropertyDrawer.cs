@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Editor
+namespace Gitenax.AngleCheckers.Editor
 {
     // [CustomPropertyDrawer(typeof(PlayerArea))]
     // public class PlayerAreaPropertyDrawer : PropertyDrawer

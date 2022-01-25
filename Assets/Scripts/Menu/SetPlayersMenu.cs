@@ -1,9 +1,9 @@
-﻿using Players;
+﻿using Gitenax.AngleCheckers.Players;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Menu
+namespace Gitenax.AngleCheckers.Menu
 {
     public sealed class SetPlayersMenu : MonoBehaviour
     {

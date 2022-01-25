@@ -1,8 +1,8 @@
 ﻿using System;
-using PlayArea;
+using Gitenax.AngleCheckers.PlayArea;
 using UnityEngine;
 
-namespace Players
+namespace Gitenax.AngleCheckers.Players
 {
     [Serializable]
     public class PlayerArea

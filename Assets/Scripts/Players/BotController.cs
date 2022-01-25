@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using PlayArea;
+using Gitenax.AngleCheckers.PlayArea;
 using UnityEngine;
 using Random = System.Random;
 
-namespace Players
+namespace Gitenax.AngleCheckers.Players
 {
     /// <summary>
     /// Реалищация примитивного AI

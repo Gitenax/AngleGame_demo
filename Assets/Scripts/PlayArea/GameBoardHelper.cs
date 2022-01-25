@@ -1,4 +1,4 @@
-﻿namespace PlayArea
+﻿namespace Gitenax.AngleCheckers.PlayArea
 {
     public sealed partial class GameBoard
     {

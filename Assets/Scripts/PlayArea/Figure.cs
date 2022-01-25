@@ -1,11 +1,11 @@
 ﻿using System;
-using Data;
-using Players;
+using Gitenax.AngleCheckers.Data;
+using Gitenax.AngleCheckers.Players;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace PlayArea
+namespace Gitenax.AngleCheckers.PlayArea
 {
     [RequireComponent(typeof(RectTransform), typeof(Image))]
     public sealed class Figure : MonoBehaviour, IPointerClickHandler

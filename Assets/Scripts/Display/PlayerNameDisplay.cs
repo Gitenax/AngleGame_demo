@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Display
+namespace Gitenax.AngleCheckers.Display
 {
     [RequireComponent(typeof(Text))]
     public sealed class PlayerNameDisplay : MonoBehaviour

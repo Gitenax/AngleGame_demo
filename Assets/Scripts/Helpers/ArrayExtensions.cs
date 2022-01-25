@@ -1,4 +1,4 @@
-﻿namespace Helpers
+﻿namespace Gitenax.AngleCheckers.Helpers
 {
 	public static class ArrayExtensions
 	{

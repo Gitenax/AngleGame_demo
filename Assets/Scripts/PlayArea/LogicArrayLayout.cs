@@ -4,7 +4,7 @@
  * Конструкция сделана так, чтобы иметь возможность
  * отрисовки поля занятых ячеек в инспекторе
  */
-namespace PlayArea
+namespace Gitenax.AngleCheckers.PlayArea
 {
     [Serializable]
     public struct LogicArrayLayout

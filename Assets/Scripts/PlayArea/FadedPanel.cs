@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace PlayArea
+namespace Gitenax.AngleCheckers.PlayArea
 {
     public sealed class FadedPanel : MonoBehaviour, IPointerClickHandler
     {

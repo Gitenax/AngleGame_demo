@@ -2,7 +2,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Menu
+namespace Gitenax.AngleCheckers.Menu
 {
 	public sealed class InGameMenu : MonoBehaviour
 	{

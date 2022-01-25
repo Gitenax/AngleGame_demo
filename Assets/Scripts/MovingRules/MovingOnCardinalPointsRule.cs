@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using PlayArea;
+using Gitenax.AngleCheckers.PlayArea;
 
-namespace MovingRules
+namespace Gitenax.AngleCheckers.MovingRules
 {
     /// <summary>
     /// <para>Перемещение фишек по 4-м направлениям сторон света (или просто по горизонтали и вертикали)</para>

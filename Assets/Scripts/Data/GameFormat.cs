@@ -1,4 +1,4 @@
-﻿namespace Data
+﻿namespace Gitenax.AngleCheckers.Data
 {
     public enum GameFormat
     {

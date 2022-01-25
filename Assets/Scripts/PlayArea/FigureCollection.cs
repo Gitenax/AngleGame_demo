@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace PlayArea
+namespace Gitenax.AngleCheckers.PlayArea
 {
     [Serializable]
     public sealed class FigureCollection

@@ -1,9 +1,9 @@
 ﻿using System;
-using MovingRules;
-using Players;
+using Gitenax.AngleCheckers.MovingRules;
+using Gitenax.AngleCheckers.Players;
 using UnityEngine;
 
-namespace PlayArea
+namespace Gitenax.AngleCheckers.PlayArea
 {
     public sealed partial class GameBoard : MonoBehaviour
     {
