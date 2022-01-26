@@ -22,7 +22,7 @@ namespace Gitenax.AngleCheckers
         [SerializeField] private List<PlayerArea> _playerAreas;
         [SerializeField] private GameOptions _gameOptions;
         [SerializeField] private GameBoard _gameBoard;
-        [SerializeField] private int _gameFormat; // Формат игры 2х2, 3х3 и т.д.
+        [SerializeField] private GameFormat _gameFormat; // Формат игры 2х2, 3х3 и т.д.
         [SerializeField] private MovingRuleType _movingType;
         private Random _random;
         private MovingRule _movingRule;
@@ -33,7 +33,7 @@ namespace Gitenax.AngleCheckers
         public event Action<Player> LeadingPlayerSelected;
         public event Action<Player, Player> GameEnded;
     
-        public int GameFormat => _gameFormat;
+        public GameFormat GameFormat => _gameFormat;
         public int BoardWidth => _gameOptions.BoardWidth;
         public int BoardHeight => _gameOptions.BoardHeight;
         public Player[] Players => _players.ToArray();
@@ -76,7 +76,7 @@ namespace Gitenax.AngleCheckers
             _players = new List<Player>();
             _playerAreas = new List<PlayerArea>();
             _random = new Random();
-            _gameFormat = (int) _gameOptions.Format;
+            _gameFormat = _gameOptions.Format;
             _movingType = (MovingRuleType) PlayerPrefs.GetInt("GAME_TYPE");
             _movingRule = SetMovingRuleForGame(_movingType);
             _gameBoard.InitializeBoard(this);
@@ -93,7 +93,7 @@ namespace Gitenax.AngleCheckers
             PlayerType secondPlayerType = (PlayerType)PlayerPrefs.GetInt("PLAYER2_TYPE");
 
             Point player1StartPosition = new Point(0, 0);
-            Point player2StartPosition = new Point(_gameOptions.BoardWidth - _gameFormat, _gameOptions.BoardHeight - _gameFormat);;
+            Point player2StartPosition = new Point(_gameOptions.BoardWidth - _gameFormat.Width, _gameOptions.BoardHeight - _gameFormat.Height);
 
             if(firstPlayerType == PlayerType.Human)
                 CreatePlayer(firstPlayerName, Color.blue, player1StartPosition);
@@ -142,7 +142,7 @@ namespace Gitenax.AngleCheckers
             T player = (T)Activator.CreateInstance(typeof(T), playerName, figuresColor);
             player.GotOpportunityToMove += plyr => { _leadingPlayer = plyr; };
         
-            var playerArea = new PlayerArea(player, _gameBoard, _gameFormat, _gameFormat, areaOffset);
+            var playerArea = new PlayerArea(player, _gameBoard, _gameFormat.Width, _gameFormat.Height, areaOffset);
             _players.Add(player);
             _playerAreas.Add(playerArea);
 

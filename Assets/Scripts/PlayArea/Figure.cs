@@ -16,7 +16,7 @@ namespace Gitenax.AngleCheckers.PlayArea
         private RectTransform _rectTransform;
 
         [Header("Настройки отображения")] 
-        [SerializeField] private FigureOptions _figureOptions;
+        [SerializeField] private GameOptions _gameOptions;
 
         [SerializeField] private Color _figureColor;
         [SerializeField] private bool _isSelected;
@@ -85,8 +85,8 @@ namespace Gitenax.AngleCheckers.PlayArea
 
         private void SetVectorPositionFromPoint(Point point)
         {
-            int offsetX = _figureOptions.FigureWidth;
-            int offsetY = _figureOptions.FigureHeight;
+            int offsetX = _gameOptions.FigureWidth;
+            int offsetY = _gameOptions.FigureHeight;
 
             VectorPosition = new Vector2(point.X * offsetX, (point.Y * offsetY * -1) - offsetY);
        

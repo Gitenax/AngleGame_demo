@@ -1,10 +1,15 @@
-﻿namespace Gitenax.AngleCheckers.Data
+﻿using System;
+using UnityEngine;
+
+namespace Gitenax.AngleCheckers.Data
 {
-    public enum GameFormat
+    [Serializable]
+    public sealed class GameFormat
     {
-        Format1X1 = 1,
-        Format2X2,
-        Format3X3,
-        Format4X4
+        [SerializeField] private int _width;
+        [SerializeField] private int _height;
+
+        public int Width => _width;
+        public int Height => _height;
     }
 }

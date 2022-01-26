@@ -48,9 +48,9 @@ namespace Gitenax.AngleCheckers.PlayArea
     
         public void InitializeFiguresForPlayer(Player player, PlayerArea area)
         {
-            for (int x = 0; x < _game.GameFormat; x++)
+            for (int x = 0; x < _game.GameFormat.Width; x++)
             {
-                for (int y = 0; y < _game.GameFormat; y++)
+                for (int y = 0; y < _game.GameFormat.Height; y++)
                 {
                     InstantiateAndSubscribeToFigure(
                         area.Positions[x, y], 

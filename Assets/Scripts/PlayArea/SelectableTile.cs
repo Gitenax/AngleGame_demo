@@ -11,7 +11,7 @@ namespace Gitenax.AngleCheckers.PlayArea
 #pragma warning disable CS0649
         [SerializeField] private Point _pointPosition = Point.Zero;
         [SerializeField] private Vector2 _vectorPosition = Vector2.zero;
-        [SerializeField] private FigureOptions _figureOptions;
+        [SerializeField] private GameOptions _gameOptions;
         private RectTransform _rectTransform;
 #pragma warning restore CS0649
         
@@ -49,8 +49,8 @@ namespace Gitenax.AngleCheckers.PlayArea
 
         private void SetVectorPositionFromPoint(Point point)
         {
-            int offsetX = _figureOptions.FigureWidth;
-            int offsetY = _figureOptions.FigureHeight;
+            int offsetX = _gameOptions.FigureWidth;
+            int offsetY = _gameOptions.FigureHeight;
 
             VectorPosition = new Vector2(point.X * offsetX, (point.Y * offsetY * -1) - offsetY);
        

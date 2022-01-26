@@ -89,4 +89,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _vectorPosition: {x: 0, y: 0}
-  _figureOptions: {fileID: 11400000, guid: a57762b3325d2334d866af2d7a85a2df, type: 2}
+  _gameOptions: {fileID: 11400000, guid: e534b2cda5914bd42ba09234c97a170c, type: 2}
